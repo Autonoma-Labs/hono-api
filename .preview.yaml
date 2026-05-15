@@ -1,0 +1,12 @@
+version: 1
+
+apps:
+  - name: api
+    path: .
+    port: 4000
+    env:
+      DATABASE_URL: "postgresql://preview:preview@{{db.host}}:{{db.port}}/preview"
+
+services:
+  - name: db
+    recipe: postgres
