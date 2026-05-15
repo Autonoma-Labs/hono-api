@@ -5,4 +5,8 @@ apps:
     path: .
     port: 4000
     env:
-      DATABASE_URL: "postgresql://postgres:postgres@db:5432/todos"
+      DATABASE_URL: "postgresql://preview:preview@{{db.host}}:{{db.port}}/preview"
+
+services:
+  - name: db
+    recipe: postgres
