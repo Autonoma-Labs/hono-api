@@ -10,3 +10,6 @@ apps:
 services:
   - name: db
     recipe: postgres
+    env:
+      POSTGRES_PASSWORD: "preview"
+      PGDATA: /var/lib/postgresql/data/pgdata
