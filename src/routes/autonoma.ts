@@ -1,6 +1,7 @@
 import { Hono } from "hono";
 import { createHonoHandler } from "@autonoma-ai/server-hono";
 import { defineFactory, type SQLExecutor } from "@autonoma-ai/sdk";
+import { z } from "zod";
 import { pool } from "../db/index.js";
 import { createTodo } from "../db/todos.js";
 
@@ -49,10 +50,14 @@ autonomaRouter.post(
     allowProduction: true,
     factories: {
       Todo: defineFactory({
+        inputSchema: z.object({
+          title: z.string(),
+          completed: z.boolean().optional(),
+        }),
         create: async (data) => {
           const row = await createTodo({
-            title: data.title as string,
-            completed: typeof data.completed === "boolean" ? data.completed : undefined,
+            title: data.title,
+            completed: data.completed,
           });
           return row as Record<string, unknown>;
         },

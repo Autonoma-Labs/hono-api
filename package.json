@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@autonoma-ai/sdk": "^0.2.0",
+    "zod": "^3.23.0",
     "@autonoma-ai/server-hono": "^0.2.0",
     "@hono/node-server": "^1.13.7",
     "drizzle-orm": "^0.45.2",
